@@ -20,6 +20,7 @@
 		573E725A23A07A3400912FB9 /* WeatherHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E725923A07A3400912FB9 /* WeatherHeaderView.swift */; };
 		573E725F23A0A9B700912FB9 /* WeatherHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573E725E23A0A9B700912FB9 /* WeatherHeaderView.xib */; };
 		573E726223A0B42700912FB9 /* WeatherLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E726123A0B42700912FB9 /* WeatherLayout.swift */; };
+		573E726423A0E09500912FB9 /* WeatherLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		573E725923A07A3400912FB9 /* WeatherHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHeaderView.swift; sourceTree = "<group>"; };
 		573E725E23A0A9B700912FB9 /* WeatherHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHeaderView.xib; sourceTree = "<group>"; };
 		573E726123A0B42700912FB9 /* WeatherLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLayout.swift; sourceTree = "<group>"; };
+		573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLayoutAttributes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				573E726123A0B42700912FB9 /* WeatherLayout.swift */,
+				573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				573E725023A0797E00912FB9 /* TodayWeatherCell.swift in Sources */,
 				573E725A23A07A3400912FB9 /* WeatherHeaderView.swift in Sources */,
 				573E725623A07A0000912FB9 /* SummaryTodayWeatherCell.swift in Sources */,
+				573E726423A0E09500912FB9 /* WeatherLayoutAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

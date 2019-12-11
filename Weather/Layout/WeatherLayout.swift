@@ -25,6 +25,10 @@ class WeatherLayout: UICollectionViewFlowLayout {
         }
     }
     
+    override class var layoutAttributesClass: AnyClass {
+        return WeatherLayoutAttributes.self
+    }
+    
     private var collectionViewWidth: CGFloat {
         guard let collectionView = collectionView else {
             return 0
@@ -44,8 +48,9 @@ class WeatherLayout: UICollectionViewFlowLayout {
         return CGSize(width: collectionViewWidth, height: contentHeight)
     }
     
-    private var cache = [Element: [IndexPath: UICollectionViewLayoutAttributes]]()
-    private var visibleAttributes = [UICollectionViewLayoutAttributes]()
+    private var oldBounds = CGRect.zero
+    private var cache = [Element: [IndexPath: WeatherLayoutAttributes]]()
+    private var visibleAttributes = [WeatherLayoutAttributes]()
     private var contentHeight = CGFloat()
     
     private var cellWidth: CGFloat {
@@ -76,35 +81,43 @@ extension WeatherLayout {
         guard let collectionView = collectionView, cache.isEmpty else { return }
         prepareCache()
         contentHeight = 0
+        oldBounds = collectionView.bounds
         
         let itemSize = CGSize(width: cellWidth, height: cellHeight)
         
-        let headerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: Element.WeatherHeaderView.kind, with: IndexPath(item: 0, section: 0))
+        let headerAttributes = WeatherLayoutAttributes(forSupplementaryViewOfKind: Element.WeatherHeaderView.kind, with: IndexPath(item: 0, section: 0))
         prepareElement(size: headerSize, type: .WeatherHeaderView, attributes: headerAttributes)
         
-        let todayWeatherAttributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: 0, section: 0))
+        let todayWeatherAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 0))
         prepareElement(size: cellTodayWeatherHeight, type: .TodayWeatherCell, attributes: todayWeatherAttributes)
         
-        let weeklyWeatherAttributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: 0, section: 1))
+        let weeklyWeatherAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 1))
         prepareElement(size: cellWeeklyWeatherHeight, type: .WeeklyWeatherCell, attributes: weeklyWeatherAttributes)
         
-        let summaryAttributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: 0, section: 2))
+        let summaryAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 2))
         prepareElement(size: cellSummaryWeatherHeight, type: .SummaryTodayWeatherCell, attributes: summaryAttributes)
         
-        let detailAttributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: 0, section: 3))
+        let detailAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 3))
         prepareElement(size: cellDetailTodayWeatheHeight, type: .DetailTodayWeatherCell, attributes: detailAttributes)
+    }
+    
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        if oldBounds.size != newBounds.size {
+            cache.removeAll(keepingCapacity: true)
+        }
+        return true // if the collection view requires a layout update
     }
     
     func prepareCache() {
         cache.removeAll(keepingCapacity: true)
-        cache[.WeatherHeaderView] = [IndexPath: UICollectionViewLayoutAttributes]()
-        cache[.TodayWeatherCell] = [IndexPath: UICollectionViewLayoutAttributes]()
-        cache[.WeeklyWeatherCell] = [IndexPath: UICollectionViewLayoutAttributes]()
-        cache[.SummaryTodayWeatherCell] = [IndexPath: UICollectionViewLayoutAttributes]()
-        cache[.DetailTodayWeatherCell] = [IndexPath: UICollectionViewLayoutAttributes]()
+        cache[.WeatherHeaderView] = [IndexPath: WeatherLayoutAttributes]()
+        cache[.TodayWeatherCell] = [IndexPath: WeatherLayoutAttributes]()
+        cache[.WeeklyWeatherCell] = [IndexPath: WeatherLayoutAttributes]()
+        cache[.SummaryTodayWeatherCell] = [IndexPath: WeatherLayoutAttributes]()
+        cache[.DetailTodayWeatherCell] = [IndexPath: WeatherLayoutAttributes]()
     }
     
-    func prepareElement(size: CGSize, type: Element, attributes: UICollectionViewLayoutAttributes) {
+    func prepareElement(size: CGSize, type: Element, attributes: WeatherLayoutAttributes) {
         guard size != .zero else { return }
         
         attributes.frame = CGRect(origin: CGPoint(x: 0, y: contentHeight), size: size)
@@ -115,6 +128,7 @@ extension WeatherLayout {
     }
 }
 
+// MARK: - PROVIDING ATTRIBUTES TO THE COLLECTIONVIEW
 extension WeatherLayout {
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         switch elementKind {
@@ -127,15 +141,23 @@ extension WeatherLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard let collectionView = collectionView else { return nil }
         visibleAttributes.removeAll(keepingCapacity: true)
         
-        for (_, elementInfo) in cache {
-            for (_, attributes) in elementInfo {
+        for (type, elementInfo) in cache {
+            for (indexPath, attributes) in elementInfo {
+                updateStickyViews(type, attributes: attributes, collectionView: collectionView, indexPath: indexPath)
                 if attributes.frame.intersects(rect) {
                     visibleAttributes.append(attributes)
                 }
             }
         }
         return visibleAttributes
+    }
+    
+    private func updateStickyViews(_ type: Element, attributes: WeatherLayoutAttributes, collectionView: UICollectionView, indexPath: IndexPath) {
+        if type == .TodayWeatherCell {
+            // process
+        }
     }
 }
