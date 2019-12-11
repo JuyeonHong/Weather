@@ -20,13 +20,20 @@ class ViewController: UIViewController {
     private func setupCollectionViewLayout() {
         guard
             let collectionView = collectionView,
-            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            let layout = collectionView.collectionViewLayout as? WeatherLayout else {
                 return
         }
-        //collectionView.register(UINib(nibName: "WeatherHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "WeatherHeaderView")
+        
+        collectionView.register(UINib(nibName: "WeatherHeaderView", bundle: nil),
+                                forSupplementaryViewOfKind: WeatherLayout.Element.WeatherHeaderView.kind,
+                                withReuseIdentifier: WeatherLayout.Element.WeatherHeaderView.id)
         
         layout.itemSize = CGSize(width: collectionView.bounds.width, height: 100)
-        //layout.headerReferenceSize = CGSize(width: collectionView.bounds.width, height: 200)
+        layout.headerSize = CGSize(width: collectionView.bounds.width, height: 300)
+        layout.cellTodayWeatherHeight = CGSize(width: collectionView.bounds.width, height: 200)
+        layout.cellWeeklyWeatherHeight = CGSize(width: collectionView.bounds.width, height: 100)
+        layout.cellSummaryWeatherHeight = CGSize(width: collectionView.bounds.width, height: 100)
+        layout.cellDetailTodayWeatheHeight = CGSize(width: collectionView.bounds.width, height: 300)
     }
 }
 
@@ -62,13 +69,13 @@ extension ViewController: UICollectionViewDataSource {
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "WeatherHeaderView", for: indexPath) as! WeatherHeaderView
-//            return header
-//        default:
-//            fatalError("Unexpected Element Kind")
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case WeatherLayout.Element.WeatherHeaderView.kind:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherLayout.Element.WeatherHeaderView.id, for: indexPath) as! WeatherHeaderView
+            return header
+        default:
+            fatalError("Unexpected Element Kind")
+        }
+    }
 }
