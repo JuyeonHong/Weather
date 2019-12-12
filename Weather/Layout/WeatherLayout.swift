@@ -156,8 +156,18 @@ extension WeatherLayout {
     }
     
     private func updateStickyViews(_ type: Element, attributes: WeatherLayoutAttributes, collectionView: UICollectionView, indexPath: IndexPath) {
-        if type == .TodayWeatherCell {
+        if type == .WeatherHeaderView {
             // process
+            let updatedHeight = max(headerSize.height / 2, headerSize.height - contentOffset.y)
+            let scaleFactor = updatedHeight / headerSize.height
+            let delta = (updatedHeight - headerSize.height) / 2
+            // 위로 올릴 때
+            if contentOffset.y > 0 {
+                // scale 줄이는 효과
+                let scale = CGAffineTransform(scaleX: 1, y: scaleFactor)
+                let translation = CGAffineTransform(translationX: 0, y: min(contentOffset.y, headerSize.height / 2) + delta)
+                attributes.transform = scale.concatenating(translation)
+            }
         }
     }
 }
