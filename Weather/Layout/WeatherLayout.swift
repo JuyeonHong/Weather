@@ -52,6 +52,7 @@ class WeatherLayout: UICollectionViewFlowLayout {
     private var cache = [Element: [IndexPath: WeatherLayoutAttributes]]()
     private var visibleAttributes = [WeatherLayoutAttributes]()
     private var contentHeight = CGFloat()
+    private var zIndex = 0 // 뷰가 겹치는 경우에 속성값을 할당해 겹치는 뷰의 일관성 보장
     
     private var cellWidth: CGFloat {
         return itemSize.width
@@ -122,6 +123,8 @@ extension WeatherLayout {
         
         attributes.initialOrigin = CGPoint(x: 0, y: contentHeight)
         attributes.frame = CGRect(origin: CGPoint(x: 0, y: contentHeight), size: size)
+        attributes.zIndex = zIndex
+        zIndex += 1
         
         contentHeight  = attributes.frame.maxY
         
