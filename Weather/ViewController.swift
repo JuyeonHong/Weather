@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         
         layout.itemSize = CGSize(width: collectionView.bounds.width, height: 100)
         layout.headerSize = CGSize(width: collectionView.bounds.width, height: 300)
-        layout.cellTodayWeatherHeight = CGSize(width: collectionView.bounds.width, height: 200)
+        layout.cellTodayWeatherHeight = CGSize(width: collectionView.bounds.width, height: 150)
         layout.cellWeeklyWeatherHeight = CGSize(width: collectionView.bounds.width, height: 100)
         layout.cellSummaryWeatherHeight = CGSize(width: collectionView.bounds.width, height: 100)
         layout.cellDetailTodayWeatheHeight = CGSize(width: collectionView.bounds.width, height: 300)
