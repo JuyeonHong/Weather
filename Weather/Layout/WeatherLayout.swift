@@ -165,7 +165,9 @@ extension WeatherLayout {
             attributes.transform = CGAffineTransform(translationX: 0, y: min(contentOffset.y, headerSize.height))
         }
         else if type == .TodayWeatherCell {
-            attributes.transform = CGAffineTransform(translationX: 0, y: min(headerSize.height / 2, max(attributes.initialOrigin.y, contentOffset.y) - headerSize.height))
+            let updatedHeight = max(headerSize.height / 2, headerSize.height - contentOffset.y)
+            let delta = updatedHeight - headerSize.height
+            attributes.transform = CGAffineTransform(translationX: 0, y: max(0, contentOffset.y - attributes.initialOrigin.y - delta))
         }
     }
 }
