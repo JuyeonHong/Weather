@@ -102,7 +102,8 @@ extension WeatherLayout {
         prepareElement(size: cellDetailTodayWeatheHeight, type: .DetailTodayWeatherCell, attributes: detailAttributes)
         
         // update zIndex (TodayWeatherCell이 최상단에 오기 위해서)
-        cache[.TodayWeatherCell]?.first?.value.zIndex = zIndex + 1
+        cache[.WeatherHeaderView]?.first?.value.zIndex = zIndex + 1
+        cache[.TodayWeatherCell]?.first?.value.zIndex = zIndex + 2
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
