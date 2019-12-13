@@ -28,12 +28,12 @@ class ViewController: UIViewController {
                                 forSupplementaryViewOfKind: WeatherLayout.Element.WeatherHeaderView.kind,
                                 withReuseIdentifier: WeatherLayout.Element.WeatherHeaderView.id)
         
-        layout.itemSize = CGSize(width: collectionView.bounds.width, height: 100)
-        layout.headerSize = CGSize(width: collectionView.bounds.width, height: 300)
-        layout.cellTodayWeatherHeight = CGSize(width: collectionView.bounds.width, height: 150)
-        layout.cellWeeklyWeatherHeight = CGSize(width: collectionView.bounds.width, height: 100)
-        layout.cellSummaryWeatherHeight = CGSize(width: collectionView.bounds.width, height: 100)
-        layout.cellDetailTodayWeatheHeight = CGSize(width: collectionView.bounds.width, height: 300)
+        layout.itemSize = CGSize(width: collectionView.frame.width, height: 100)
+        layout.headerSize = CGSize(width: collectionView.frame.width, height: 300)
+        layout.cellTodayWeatherHeight = CGSize(width: collectionView.frame.width, height: 125)
+        layout.cellWeeklyWeatherHeight = CGSize(width: collectionView.frame.width, height: 330)
+        layout.cellSummaryWeatherHeight = CGSize(width: collectionView.frame.width, height: 90)
+        layout.cellDetailTodayWeatheHeight = CGSize(width: collectionView.frame.width, height: 300)
     }
 }
 

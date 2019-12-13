@@ -100,6 +100,9 @@ extension WeatherLayout {
         
         let detailAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 3))
         prepareElement(size: cellDetailTodayWeatheHeight, type: .DetailTodayWeatherCell, attributes: detailAttributes)
+        
+        // update zIndex (TodayWeatherCell이 최상단에 오기 위해서)
+        cache[.TodayWeatherCell]?.first?.value.zIndex = zIndex + 1
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -162,10 +165,16 @@ extension WeatherLayout {
     
     private func updateStickyViews(_ type: Element, attributes: WeatherLayoutAttributes, collectionView: UICollectionView, indexPath: IndexPath) {
         if type == .WeatherHeaderView {
-            attributes.transform = CGAffineTransform(translationX: 0, y: min(contentOffset.y, headerSize.height))
+            let updatedHeight = max(headerSize.height, headerSize.height - contentOffset.y)
+            let delta = (updatedHeight - headerSize.height)
+            if contentOffset.y > 0 {
+                attributes.transform = CGAffineTransform(translationX: 0, y: max(attributes.initialOrigin.y, contentOffset.y) - delta)
+            } else {
+                attributes.transform = CGAffineTransform(translationX: 0, y: min(contentOffset.y, headerSize.height))
+            }
         }
         else if type == .TodayWeatherCell {
-            let updatedHeight = max(headerSize.height / 2, headerSize.height - contentOffset.y)
+            let updatedHeight = max(headerSize.height / 2, headerSize.height / 2 - contentOffset.y)
             let delta = updatedHeight - headerSize.height
             attributes.transform = CGAffineTransform(translationX: 0, y: max(0, contentOffset.y - attributes.initialOrigin.y - delta))
         }

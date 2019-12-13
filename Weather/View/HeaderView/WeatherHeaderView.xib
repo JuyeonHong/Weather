@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xDg-62-bMQ">
-                    <rect key="frame" x="20" y="336" width="95" height="24"/>
+                    <rect key="frame" x="20" y="322" width="95" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fp7-aU-0Lq">
                             <rect key="frame" x="0.0" y="0.0" width="52" height="24"/>
@@ -52,7 +52,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tPE-ox-zMr">
-                    <rect key="frame" x="491" y="339.5" width="64" height="20.5"/>
+                    <rect key="frame" x="491" y="325.5" width="64" height="20.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ynb-Tw-VzA">
                             <rect key="frame" x="0.0" y="0.0" width="22" height="20.5"/>
@@ -81,9 +81,9 @@
                 <constraint firstItem="c4Q-Gn-E6e" firstAttribute="centerX" secondItem="T0D-F4-Noh" secondAttribute="centerX" id="C2y-ir-Ioz"/>
                 <constraint firstItem="734-9U-DnA" firstAttribute="top" secondItem="0zT-3B-Xa2" secondAttribute="bottom" constant="20" id="HM9-us-nWS"/>
                 <constraint firstItem="0zT-3B-Xa2" firstAttribute="top" secondItem="c4Q-Gn-E6e" secondAttribute="bottom" constant="5" id="cVX-3E-104"/>
-                <constraint firstAttribute="bottom" secondItem="tPE-ox-zMr" secondAttribute="bottom" constant="20" id="p8Z-M5-7Wc"/>
-                <constraint firstItem="xDg-62-bMQ" firstAttribute="leading" secondItem="Os8-A8-7Og" secondAttribute="leading" constant="20" id="qJl-U1-doZ"/>
-                <constraint firstAttribute="bottom" secondItem="xDg-62-bMQ" secondAttribute="bottom" constant="20" id="rFL-P2-8I2"/>
+                <constraint firstItem="T0D-F4-Noh" firstAttribute="bottom" secondItem="tPE-ox-zMr" secondAttribute="bottom" id="p8Z-M5-7Wc"/>
+                <constraint firstItem="xDg-62-bMQ" firstAttribute="leading" secondItem="T0D-F4-Noh" secondAttribute="leading" constant="20" id="qJl-U1-doZ"/>
+                <constraint firstItem="T0D-F4-Noh" firstAttribute="bottom" secondItem="xDg-62-bMQ" secondAttribute="bottom" id="rFL-P2-8I2"/>
                 <constraint firstItem="0zT-3B-Xa2" firstAttribute="centerX" secondItem="T0D-F4-Noh" secondAttribute="centerX" id="rnw-Is-JAZ"/>
                 <constraint firstItem="734-9U-DnA" firstAttribute="centerX" secondItem="T0D-F4-Noh" secondAttribute="centerX" id="ryN-lA-rPV"/>
                 <constraint firstItem="T0D-F4-Noh" firstAttribute="trailing" secondItem="tPE-ox-zMr" secondAttribute="trailing" constant="20" id="xPt-89-O3z"/>
