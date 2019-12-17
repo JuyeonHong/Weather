@@ -170,6 +170,7 @@ extension WeatherLayout {
             let updatedHeight = headerSize.height - contentOffset.y
             let resultHeight = min(headerSize.height, max(limitHeight, updatedHeight))
             attributes.frame = CGRect(origin: CGPoint(x: 0, y: contentOffset.y), size: CGSize(width: headerSize.width, height: resultHeight))
+            attributes.headerAlpha = 1 - (contentOffset.y / cellTodayWeatherSize.height)
         }
         else if type == .TodayWeatherCell {
             let updatedHeight = max(headerSize.height / 2, headerSize.height / 2 - contentOffset.y)

@@ -10,12 +10,14 @@ import UIKit
 
 class WeatherLayoutAttributes: UICollectionViewLayoutAttributes {
     var initialOrigin: CGPoint = .zero
+    var headerAlpha: CGFloat = .zero
     
     override func copy(with zone: NSZone? = nil) -> Any {
         guard let copiedAttributes = super.copy(with: zone) as? WeatherLayoutAttributes else {
             return super.copy(with: zone)
         }
         copiedAttributes.initialOrigin = initialOrigin
+        copiedAttributes.headerAlpha = headerAlpha
         return copiedAttributes
     }
     
@@ -23,7 +25,7 @@ class WeatherLayoutAttributes: UICollectionViewLayoutAttributes {
         guard let otherAttributes = object as? WeatherLayoutAttributes else {
             return false
         }
-        if otherAttributes.initialOrigin != initialOrigin {
+        if otherAttributes.initialOrigin != initialOrigin || otherAttributes.headerAlpha != headerAlpha {
             return false
         }
         return super.isEqual(object)

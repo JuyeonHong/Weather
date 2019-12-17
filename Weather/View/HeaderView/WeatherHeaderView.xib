@@ -90,6 +90,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="T0D-F4-Noh"/>
             <connections>
+                <outlet property="dayLabel" destination="OCe-4D-dGn" id="26w-cj-EZ9"/>
                 <outlet property="dayOfWeekLabel" destination="fp7-aU-0Lq" id="5z1-61-5Hk"/>
                 <outlet property="districtLabel" destination="c4Q-Gn-E6e" id="xcI-kr-2Hb"/>
                 <outlet property="maxTempLabel" destination="Ynb-Tw-VzA" id="CKm-iT-QHN"/>
