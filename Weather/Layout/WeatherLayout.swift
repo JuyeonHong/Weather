@@ -166,13 +166,10 @@ extension WeatherLayout {
     
     private func updateStickyViews(_ type: Element, attributes: WeatherLayoutAttributes, collectionView: UICollectionView, indexPath: IndexPath) {
         if type == .WeatherHeaderView {
-            let updatedHeight = max(headerSize.height, headerSize.height - contentOffset.y)
-            let delta = (updatedHeight - headerSize.height)
-            if contentOffset.y > 0 {
-                attributes.transform = CGAffineTransform(translationX: 0, y: max(attributes.initialOrigin.y, contentOffset.y) - delta)
-            } else {
-                attributes.transform = CGAffineTransform(translationX: 0, y: min(contentOffset.y, headerSize.height))
-            }
+            let limitHeight = headerSize.height - cellTodayWeatherSize.height
+            let updatedHeight = headerSize.height - contentOffset.y
+            let resultHeight = min(headerSize.height, max(limitHeight, updatedHeight))
+            attributes.frame = CGRect(origin: CGPoint(x: 0, y: contentOffset.y), size: CGSize(width: headerSize.width, height: resultHeight))
         }
         else if type == .TodayWeatherCell {
             let updatedHeight = max(headerSize.height / 2, headerSize.height / 2 - contentOffset.y)
