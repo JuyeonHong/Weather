@@ -63,10 +63,10 @@ class WeatherLayout: UICollectionViewFlowLayout {
     }
     
     var headerSize: CGSize = .zero
-    var cellTodayWeatherHeight: CGSize = .zero
-    var cellWeeklyWeatherHeight: CGSize = .zero
-    var cellSummaryWeatherHeight: CGSize = .zero
-    var cellDetailTodayWeatheHeight: CGSize = .zero
+    var cellTodayWeatherSize: CGSize = .zero
+    var cellWeeklyWeatherSize: CGSize = .zero
+    var cellSummaryWeatherSize: CGSize = .zero
+    var cellDetailTodayWeatherSize: CGSize = .zero
     
     private var contentOffset: CGPoint {
         guard let collectionView = collectionView else {
@@ -90,16 +90,16 @@ extension WeatherLayout {
         prepareElement(size: headerSize, type: .WeatherHeaderView, attributes: headerAttributes)
         
         let todayWeatherAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 0))
-        prepareElement(size: cellTodayWeatherHeight, type: .TodayWeatherCell, attributes: todayWeatherAttributes)
+        prepareElement(size: cellTodayWeatherSize, type: .TodayWeatherCell, attributes: todayWeatherAttributes)
         
         let weeklyWeatherAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 1))
-        prepareElement(size: cellWeeklyWeatherHeight, type: .WeeklyWeatherCell, attributes: weeklyWeatherAttributes)
+        prepareElement(size: cellWeeklyWeatherSize, type: .WeeklyWeatherCell, attributes: weeklyWeatherAttributes)
         
         let summaryAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 2))
-        prepareElement(size: cellSummaryWeatherHeight, type: .SummaryTodayWeatherCell, attributes: summaryAttributes)
+        prepareElement(size: cellSummaryWeatherSize, type: .SummaryTodayWeatherCell, attributes: summaryAttributes)
         
         let detailAttributes = WeatherLayoutAttributes(forCellWith: IndexPath(item: 0, section: 3))
-        prepareElement(size: cellDetailTodayWeatheHeight, type: .DetailTodayWeatherCell, attributes: detailAttributes)
+        prepareElement(size: cellDetailTodayWeatherSize, type: .DetailTodayWeatherCell, attributes: detailAttributes)
         
         // update zIndex (TodayWeatherCell이 최상단에 오기 위해서)
         cache[.WeatherHeaderView]?.first?.value.zIndex = zIndex + 1
