@@ -40,6 +40,7 @@
 		573E725E23A0A9B700912FB9 /* WeatherHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHeaderView.xib; sourceTree = "<group>"; };
 		573E726123A0B42700912FB9 /* WeatherLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLayout.swift; sourceTree = "<group>"; };
 		573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLayoutAttributes.swift; sourceTree = "<group>"; };
+		57C661E123A9F9F400CD82C2 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +79,9 @@
 				573E723A239F904A00912FB9 /* Main.storyboard */,
 				573E726023A0B40200912FB9 /* Layout */,
 				573E724823A078C200912FB9 /* View */,
+				57C661E023A9F81C00CD82C2 /* Supporting Files */,
 				573E723D239F904B00912FB9 /* Assets.xcassets */,
 				573E723F239F904B00912FB9 /* LaunchScreen.storyboard */,
-				573E7242239F904B00912FB9 /* Info.plist */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -113,6 +114,15 @@
 				573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		57C661E023A9F81C00CD82C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				573E7242239F904B00912FB9 /* Info.plist */,
+				57C661E123A9F9F400CD82C2 /* keys.xcconfig */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "Weather/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,7 +368,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "Weather/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
