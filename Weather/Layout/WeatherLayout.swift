@@ -173,7 +173,8 @@ extension WeatherLayout {
             attributes.headerAlpha = 1 - (contentOffset.y / cellTodayWeatherSize.height)
         }
         else if type == .TodayWeatherCell {
-            let updatedHeight = max(headerSize.height / 2, headerSize.height / 2 - contentOffset.y)
+            let goal = (headerSize.height / 2) + 30
+            let updatedHeight = max(goal, goal - contentOffset.y)
             let delta = updatedHeight - headerSize.height
             attributes.transform = CGAffineTransform(translationX: 0, y: max(0, contentOffset.y - attributes.initialOrigin.y - delta))
         }
