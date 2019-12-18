@@ -173,10 +173,10 @@ extension WeatherLayout {
             attributes.headerAlpha = 1 - (contentOffset.y / cellTodayWeatherSize.height)
         }
         else if type == .TodayWeatherCell {
-            let goal = (headerSize.height / 2) + 30
-            let updatedHeight = max(goal, goal - contentOffset.y)
-            let delta = updatedHeight - headerSize.height
-            attributes.transform = CGAffineTransform(translationX: 0, y: max(0, contentOffset.y - attributes.initialOrigin.y - delta))
+            let upperLimit = (headerSize.height / 2) + 30
+            let initY = upperLimit - headerSize.height
+            let updatedY = contentOffset.y - attributes.initialOrigin.y - initY // updatedY가 0이 넘을 때 부터 sticky
+            attributes.transform = CGAffineTransform(translationX: 0, y: max(0, updatedY))
         }
     }
 }
