@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var locationManager: CLLocationManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionViewLayout()
-        
-        let weatherManager = WeatherManager()
-        weatherManager.getWeather(where: "Tampa")
+        // 위치권한요청
+        requestLocationAuthorization()
+//        let weatherManager = WeatherManager()
+//        weatherManager.getWeather(where: "Tampa")
     }
     
     private func setupCollectionViewLayout() {
@@ -39,6 +43,75 @@ class ViewController: UIViewController {
         layout.cellWeeklyWeatherSize = CGSize(width: width, height: 330)
         layout.cellSummaryWeatherSize = CGSize(width: width, height: 90)
         layout.cellDetailTodayWeatherSize = CGSize(width: width, height: 300)
+    }
+    
+    private func requestLocationAuthorization() {
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if authorizationStatus == .notDetermined {
+            locationManager?.requestWhenInUseAuthorization()
+        } else if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
+            // 위치 허용상태
+            print("위치 허용상태")
+        } else {
+            let message = "현재 날씨를 알기 위해 위치 정보에 접근할 수 있도록 허용되어 있어야 합니다."
+            let alert = UIAlertController.init(title: "", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, completionHandler: { (success) in
+                         print("Settings opened: \(success)")
+                    })
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func getCurrentLocation() {
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startUpdatingLocation()
+        
+        // 현재 위치 위도, 경도 가져오기
+        let coor = locationManager?.location?.coordinate
+        if let latitude = coor?.latitude, let longitude = coor?.longitude {
+            let findLoaction = CLLocation(latitude: latitude, longitude: longitude)
+            let geoCoder = CLGeocoder()
+            let locale = Locale(identifier: Locale.current.identifier)
+            geoCoder.reverseGeocodeLocation(findLoaction, preferredLocale: locale, completionHandler: { (placemarks, error) in
+                if error != nil {
+                    if let adress: [CLPlacemark] = placemarks {
+                        let name = adress.last?.name
+                        print(name as Any)
+                    }
+                } else {
+                    print(error?.localizedDescription as Any)
+                }
+            })
+        }
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    // method triggered when new location change
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print("did get latest location")
+//
+//        guard let latestLocation = locations.first else {return}
+//
+//        if currentCoordinate == nil {
+//            zoomToLatestLocation(with: latestLocation.coordinate)
+//        }
+//
+//        currentCoordinate = latestLocation.coordinate
+//    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            getCurrentLocation()
+        }
     }
 }
 
