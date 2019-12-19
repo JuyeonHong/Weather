@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionViewLayout()
+        
+        let weatherManager = WeatherManager()
+        weatherManager.getWeather(where: "Tampa")
     }
     
     private func setupCollectionViewLayout() {
