@@ -10,18 +10,18 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var locationManager: CLLocationManager?
+    let weatherManager = WeatherManager()
+    var weatherData: [String: Any]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionViewLayout()
         // 위치권한요청
         requestLocationAuthorization()
-//        let weatherManager = WeatherManager()
-//        weatherManager.getWeather(where: "Tampa")
     }
     
     private func setupCollectionViewLayout() {
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, completionHandler: { (success) in
-                         print("Settings opened: \(success)")
+                        print("Settings opened: \(success)")
                     })
                 }
             }))
@@ -77,19 +77,10 @@ class ViewController: UIViewController {
         // 현재 위치 위도, 경도 가져오기
         let coor = locationManager?.location?.coordinate
         if let latitude = coor?.latitude, let longitude = coor?.longitude {
-            let findLoaction = CLLocation(latitude: latitude, longitude: longitude)
-            let geoCoder = CLGeocoder()
-            let locale = Locale(identifier: Locale.current.identifier)
-            geoCoder.reverseGeocodeLocation(findLoaction, preferredLocale: locale, completionHandler: { (placemarks, error) in
-                if error != nil {
-                    if let adress: [CLPlacemark] = placemarks {
-                        let name = adress.last?.name
-                        print(name as Any)
-                    }
-                } else {
-                    print(error?.localizedDescription as Any)
-                }
-            })
+            weatherManager.getCurrentWeatherData(latitude: latitude, longitude: longitude) { (data) in
+                self.weatherData = data
+                print(self.weatherData as Any)
+            }
         }
     }
 }
