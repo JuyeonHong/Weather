@@ -79,3 +79,21 @@ class WeatherManager {
         return keyString
     }
 }
+
+extension WeatherManager {
+    static func convertUnixTime(time: Int64?, timeZone: Int64) -> String {
+        var convertedDate = ""
+        
+        if let unixTime = time {
+            let date = Date(timeIntervalSince1970: TimeInterval(unixTime))
+            let dateFormatter = DateFormatter()
+            let timezone = TimeZone(secondsFromGMT: Int(timeZone))
+            dateFormatter.timeZone = timezone
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.timeStyle = .short // ex. 07.43 AM
+            convertedDate = dateFormatter.string(from: date)
+        }
+        
+        return convertedDate
+    }
+}

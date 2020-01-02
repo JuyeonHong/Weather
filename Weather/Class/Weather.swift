@@ -25,9 +25,11 @@ struct Weather {
     let pressure: Int64 // 기압
     let visibility: Int64 // 가시거리
     
+    let timezone: Int64
+    
     init(name: String, main: String, description: String, temp: Double, temp_max: Double, temp_min: Double,
          sunrise: Int64, sunset: Int64, clouds: Int64, humidity: Int64, wind: String, feels_like: Double,
-         pressure: Int64, visibility: Int64) {
+         pressure: Int64, visibility: Int64, timezone: Int64) {
         self.name = name
         self.main = main
         self.description = description
@@ -43,11 +45,14 @@ struct Weather {
         self.feels_like = feels_like
         self.pressure = pressure
         self.visibility = visibility
+        
+        self.timezone = timezone
     }
     
     init?(dict: [String: Any]) {
         self.name = dict["name"] as? String ?? ""
         self.visibility = dict["visibility"] as? Int64 ?? 0
+        self.timezone = dict["timezone"] as? Int64 ?? 0
         
         let main = dict["main"] as? NSDictionary
         self.temp = main?.value(forKey: "temp") as? Double ?? 0
