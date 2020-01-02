@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     let weatherManager = WeatherManager()
-    var weatherData: [String: Any]? = nil
+    var weather: Weather?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +78,8 @@ class ViewController: UIViewController {
         let coor = locationManager?.location?.coordinate
         if let latitude = coor?.latitude, let longitude = coor?.longitude {
             weatherManager.getCurrentWeatherData(latitude: latitude, longitude: longitude) { (data) in
-                self.weatherData = data
-                print(self.weatherData as Any)
+                print(data)
+                self.weather = Weather(dict: data)
             }
         }
     }
