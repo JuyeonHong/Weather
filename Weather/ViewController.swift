@@ -95,6 +95,7 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     print(data)
                     self.weather = Weather(dict: data)
+                    self.collectionView.reloadData()
                     self.indicatorView.stopAnimating()
                     self.indicatorView.isHidden = true
                 }
@@ -160,6 +161,7 @@ extension ViewController: UICollectionViewDataSource {
         switch kind {
         case WeatherLayout.Element.WeatherHeaderView.kind:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherLayout.Element.WeatherHeaderView.id, for: indexPath) as! WeatherHeaderView
+            header.weather = self.weather
             return header
         default:
             fatalError("Unexpected Element Kind")
