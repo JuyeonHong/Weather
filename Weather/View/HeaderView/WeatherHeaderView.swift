@@ -22,7 +22,7 @@ class WeatherHeaderView: UICollectionReusableView {
         didSet {
             if let data = weather {
                 districtLabel.text = data.name
-                weatherLabel.text = data.main
+                weatherLabel.text = data.description
                 tempLabel.text = String(data.temp)
                 dayOfWeekLabel.text = getTodayDayOfWeek()
                 maxTempLabel.text = String(data.temp_max)
@@ -51,7 +51,18 @@ class WeatherHeaderView: UICollectionReusableView {
         let calender = Calendar(identifier: .gregorian)
         let now = Date()
         let comps = calender.dateComponents([.weekday], from: now)
-        dow = String(format: "%d%@", comps.weekday!, "요일")
+        let today = comps.weekday!
+        
+        switch today {
+        case 1: dow = "Sunday"
+        case 2: dow = "Monday"
+        case 3: dow = "Tuesday"
+        case 4: dow = "Wednesday"
+        case 5: dow = "Thursday"
+        case 6: dow = "Friday"
+        case 7: dow = "Saturday"
+        default: dow = ""
+        }
         
         return dow
     }
