@@ -12,24 +12,6 @@ class WeatherManager {
     private let baseURL = "https://api.openweathermap.org/data/2.5/weather"
     private let key = getWeatherAPIString()
     
-//    func getWeather(where city: String) {
-//        let session = URLSession.shared
-//        let weatherRequestURL = URL(string: String(format: "%@?APPID=%@&q=%@", baseURL, key, city))!
-//
-//        let dataTask = session.dataTask(with: weatherRequestURL) { (data: Data?, response: URLResponse?, error: Error?) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else {
-//                print("Raw data: \(String(describing: data))")
-//                if let data = data {
-//                    let dataString = String(bytes: data, encoding: .utf8)
-//                    print("\(String(describing: dataString))")
-//                }
-//            }
-//        }
-//        dataTask.resume()
-//    }
-    
     func getCurrentWeatherData(latitude: Double, longitude: Double, completion: @escaping (([String: Any]) -> Void)) {
         let session = URLSession.shared
         guard let url = URL(string: String(format: "%@?APPID=%@&lat=%f&lon=%f", baseURL, key, latitude, longitude)) else {
@@ -100,5 +82,36 @@ extension WeatherManager {
         }
         
         return convertedDate
+    }
+    
+    static func getTodayDayOfWeek() -> String {
+        var dow = ""
+        
+        let calender = Calendar(identifier: .gregorian)
+        let now = Date()
+        let comps = calender.dateComponents([.weekday], from: now)
+        let today = comps.weekday!
+        
+        switch today {
+        case 1: dow = "Sunday"
+        case 2: dow = "Monday"
+        case 3: dow = "Tuesday"
+        case 4: dow = "Wednesday"
+        case 5: dow = "Thursday"
+        case 6: dow = "Friday"
+        case 7: dow = "Saturday"
+        default: dow = ""
+        }
+        
+        return dow
+    }
+    
+    static func convertTemp(temp: Double, from inputTempType: UnitTemperature, to outputTempType: UnitTemperature) -> String {
+        let mf = MeasurementFormatter()
+        mf.numberFormatter.maximumFractionDigits = 0
+        mf.unitOptions = .providedUnit
+        let input = Measurement(value: temp, unit: inputTempType)
+        let output = input.converted(to: outputTempType)
+        return mf.string(from: output)
     }
 }

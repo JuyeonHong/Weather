@@ -23,10 +23,10 @@ class WeatherHeaderView: UICollectionReusableView {
             if let data = weather {
                 districtLabel.text = data.name
                 weatherLabel.text = data.description
-                tempLabel.text = String(data.temp)
-                dayOfWeekLabel.text = getTodayDayOfWeek()
-                maxTempLabel.text = String(data.temp_max)
-                minTempLabel.text = String(data.temp_min)
+                tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
+                dayOfWeekLabel.text = WeatherManager.getTodayDayOfWeek()
+                maxTempLabel.text = WeatherManager.convertTemp(temp: data.temp_max, from: .kelvin, to: .celsius)
+                minTempLabel.text = WeatherManager.convertTemp(temp: data.temp_min, from: .kelvin, to: .celsius)
             }
         }
     }
@@ -43,27 +43,5 @@ class WeatherHeaderView: UICollectionReusableView {
         dayLabel.alpha = weatherLayoutAttributes.headerAlpha
         maxTempLabel.alpha = weatherLayoutAttributes.headerAlpha
         minTempLabel.alpha = weatherLayoutAttributes.headerAlpha
-    }
-    
-    private func getTodayDayOfWeek() -> String {
-        var dow = ""
-        
-        let calender = Calendar(identifier: .gregorian)
-        let now = Date()
-        let comps = calender.dateComponents([.weekday], from: now)
-        let today = comps.weekday!
-        
-        switch today {
-        case 1: dow = "Sunday"
-        case 2: dow = "Monday"
-        case 3: dow = "Tuesday"
-        case 4: dow = "Wednesday"
-        case 5: dow = "Thursday"
-        case 6: dow = "Friday"
-        case 7: dow = "Saturday"
-        default: dow = ""
-        }
-        
-        return dow
     }
 }
