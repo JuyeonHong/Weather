@@ -39,11 +39,16 @@ class WeatherManager {
         
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
+        request.timeoutInterval = 180
         
         let dataTask = session.dataTask(with: request as URLRequest) { data, response, error  in
             guard error == nil else {
-                print("통신에러")
-                print(error?.localizedDescription as Any)
+                print("####통신에러####")
+                if let errorCode = error as NSError?, errorCode.code == NSURLErrorTimedOut {
+                    print("####TIME OUT####")
+                } else {
+                    print(error?.localizedDescription as Any)
+                }
                 return
             }
             // 데이터가 있는 경우
