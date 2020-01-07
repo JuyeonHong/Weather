@@ -153,6 +153,7 @@ extension ViewController: UICollectionViewDataSource {
             
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryCell", for: indexPath) as! SummaryTodayWeatherCell
+            cell.weather = weather
             return cell
             
         case 3:

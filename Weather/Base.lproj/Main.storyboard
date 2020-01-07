@@ -92,6 +92,9 @@
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="414" height="67"/>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="gmY-H4-mOS" id="ieF-aR-11S"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DetailCell" id="jkn-6i-7Df" customClass="DetailTodayWeatherCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="2" y="371" width="410" height="186"/>
