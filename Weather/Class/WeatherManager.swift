@@ -8,16 +8,22 @@
 
 import Foundation
 
+enum DataType: String {
+    case weather
+    case forecast
+}
+
 class WeatherManager {
-    private let baseURL = "https://api.openweathermap.org/data/2.5/weather"
+    private let baseURL = "https://api.openweathermap.org/data/2.5/"
     private let key = getWeatherAPIString()
     
-    func getCurrentWeatherData(latitude: Double, longitude: Double, completion: @escaping (([String: Any]) -> Void)) {
+    func getWeatherData(data type: DataType, latitude: Double, longitude: Double, completion: @escaping (([String: Any]) -> Void)) {
         let session = URLSession.shared
-        guard let url = URL(string: String(format: "%@?APPID=%@&lat=%f&lon=%f", baseURL, key, latitude, longitude)) else {
+        guard let url = URL(string: String(format: "%@%@?APPID=%@&lat=%f&lon=%f", baseURL, type.rawValue, key, latitude, longitude)) else {
             print("URL is nill")
             return
         }
+        print(url)
         
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"

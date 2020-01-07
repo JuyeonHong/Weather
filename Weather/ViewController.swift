@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     var locationManager: CLLocationManager?
     let weatherManager = WeatherManager()
     var weather: Weather?
+    var hourlyForecast: [String: Any]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,13 +92,19 @@ class ViewController: UIViewController {
         // 현재 위치 위도, 경도 가져오기
         let coor = locationManager?.location?.coordinate
         if let latitude = coor?.latitude, let longitude = coor?.longitude {
-            weatherManager.getCurrentWeatherData(latitude: latitude, longitude: longitude) { (data) in
-                DispatchQueue.main.async {
-                    print(data)
-                    self.weather = Weather(dict: data)
-                    self.collectionView.reloadData()
-                    self.indicatorView.stopAnimating()
-                    self.indicatorView.isHidden = true
+            weatherManager.getWeatherData(data: .weather, latitude: latitude, longitude: longitude) { data in
+                print(data)
+                self.weather = Weather(dict: data)
+                
+                self.weatherManager.getWeatherData(data: .forecast, latitude: latitude, longitude: longitude) { data in
+                    DispatchQueue.main.async {
+                        print(data)
+                        self.hourlyForecast = data
+                        
+                        self.collectionView.reloadData()
+                        self.indicatorView.stopAnimating()
+                        self.indicatorView.isHidden = true
+                    }
                 }
             }
         }
