@@ -31,8 +31,10 @@ class DetailTodayWeatherCell: UICollectionViewCell {
                 humidityLabel.text = String(format: "%d %@", data.humidity, "%")
                 
                 let spd = data.wind.value(forKey: "speed") as? Double ?? 0
-                let speed = Measurement(value: spd, unit: UnitSpeed.metersPerSecond)
+                let speed = Measurement(value: spd, unit: UnitSpeed.metersPerSecond).description
                 let deg = data.wind.value(forKey: "deg") as? Double ?? 0
+                let direction = deg.direction.description
+                windLabel.text = String(format: "%@ %@", direction, speed)
                 
                 feelslikeLabel.text = WeatherManager.convertTemp(temp: data.feels_like, from: .kelvin, to: .celsius)
                 

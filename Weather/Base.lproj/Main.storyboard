@@ -120,7 +120,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="MT8-ms-yhR"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -152,7 +152,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="jfP-Tu-w99"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -189,7 +189,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="6ib-Wh-ANC"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -221,7 +221,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="fD5-Wy-26o"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -258,7 +258,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="TSd-Um-fGg"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -290,7 +290,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="yNW-hp-LSJ"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -327,7 +327,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="uc9-ep-WPk"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
@@ -359,7 +359,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="qCP-90-MVd"/>
                                                                                     </constraints>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>

@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         layout.cellTodayWeatherSize = CGSize(width: width, height: 125)
         layout.cellWeeklyWeatherSize = CGSize(width: width, height: 330)
         layout.cellSummaryWeatherSize = CGSize(width: width, height: 90)
-        layout.cellDetailTodayWeatherSize = CGSize(width: width, height: 300)
+        layout.cellDetailTodayWeatherSize = CGSize(width: width, height: 240)
     }
     
     private func requestLocationAuthorization() {
