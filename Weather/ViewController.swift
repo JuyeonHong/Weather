@@ -26,8 +26,8 @@ class ViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     let weatherManager = WeatherManager()
-    var weather: Weather?
-    var hourlyForecast: [String: Any]? = nil
+    var weather: Weather? // 현재 날씨
+    var forecastArray: [Forecast]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
                 self.weatherManager.getWeatherData(data: .forecast, latitude: latitude, longitude: longitude) { data in
                     DispatchQueue.main.async {
                         print(data)
-                        self.hourlyForecast = data
+                        self.forecastArray = ForecastManager.loadForecastArray(dict: data)
                         
                         self.collectionView.reloadData()
                         self.indicatorView.stopAnimating()

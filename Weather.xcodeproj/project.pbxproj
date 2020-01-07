@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572E81A323C44AE7001F393C /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E81A223C44AE7001F393C /* Forecast.swift */; };
 		573E7235239F904A00912FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E7234239F904A00912FB9 /* AppDelegate.swift */; };
 		573E7237239F904A00912FB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E7236239F904A00912FB9 /* SceneDelegate.swift */; };
 		573E7239239F904A00912FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E7238239F904A00912FB9 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		572E81A223C44AE7001F393C /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		573E7231239F904A00912FB9 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		573E7234239F904A00912FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		573E7236239F904A00912FB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				57C661E323A9FFD800CD82C2 /* WeatherManager.swift */,
 				575A475123BD8BFF00F681E2 /* Weather.swift */,
+				572E81A223C44AE7001F393C /* Forecast.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				575A475223BD8BFF00F681E2 /* Weather.swift in Sources */,
 				573E725823A07A1E00912FB9 /* DetailTodayWeatherCell.swift in Sources */,
 				573E7237239F904A00912FB9 /* SceneDelegate.swift in Sources */,
+				572E81A323C44AE7001F393C /* Forecast.swift in Sources */,
 				57C661E423A9FFD800CD82C2 /* WeatherManager.swift in Sources */,
 				573E725023A0797E00912FB9 /* TodayWeatherCell.swift in Sources */,
 				573E725A23A07A3400912FB9 /* WeatherHeaderView.swift in Sources */,
