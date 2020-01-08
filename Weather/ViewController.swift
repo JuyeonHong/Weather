@@ -123,6 +123,17 @@ class ViewController: UIViewController {
         }
         return todayarr
     }
+    // today ~ tomorrow
+    private func get2DaysForecast() -> [Forecast] {
+        var twoDaysArr: [Forecast] = []
+        if let arr = forecastArray {
+            for i in 0..<12 {
+                let data = arr[i]
+                twoDaysArr.append(data)
+            }
+        }
+        return twoDaysArr
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -159,8 +170,8 @@ extension ViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayWeatherCell", for: indexPath) as! TodayWeatherCell
-            let todayArray = getTodayForecast()
-            cell.forecastArray = todayArray
+            let array = get2DaysForecast()
+            cell.forecastArray = array
             cell.collectionView.reloadData()
             return cell
             
