@@ -90,6 +90,21 @@ extension WeatherManager {
         return convertedDate
     }
     
+    static func convertUnixDate(date: Int?) -> String {
+        var convertedDate = ""
+        
+        if let unixDate = date {
+            let date = Date(timeIntervalSince1970: TimeInterval(unixDate))
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateFormat = "yyyy.MM.dd"
+            convertedDate = dateFormatter.string(from: date)
+        }
+        
+        return convertedDate
+    }
+    
     static func getTodayDayOfWeek() -> String {
         var dow = ""
         
@@ -110,6 +125,13 @@ extension WeatherManager {
         }
         
         return dow
+    }
+    
+    static func getTodayDate() -> String {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy.MM.dd"
+        let currentDate = df.string(from: Date())
+        return currentDate
     }
     
     static func convertTemp(temp: Double, from inputTempType: UnitTemperature, to outputTempType: UnitTemperature) -> String {

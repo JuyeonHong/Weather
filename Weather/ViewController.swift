@@ -109,6 +109,20 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    private func getTodayForecast() -> [Forecast] {
+        var todayarr: [Forecast] = []
+        if let arr = forecastArray {
+            for item in arr {
+                let date = WeatherManager.convertUnixDate(date: item.date)
+                let todayDate = WeatherManager.getTodayDate()
+                if date == todayDate {
+                    todayarr.append(item)
+                }
+            }
+        }
+        return todayarr
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -145,6 +159,9 @@ extension ViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayWeatherCell", for: indexPath) as! TodayWeatherCell
+            let todayArray = getTodayForecast()
+            cell.forecastArray = todayArray
+            cell.collectionView.reloadData()
             return cell
             
         case 1:

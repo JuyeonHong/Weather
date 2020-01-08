@@ -22,31 +22,98 @@
                                 <collectionViewLayout key="collectionViewLayout" id="5I6-iv-KFy" customClass="WeatherLayout" customModule="Weather" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TodayWeatherCell" id="nTb-hi-zLT" customClass="TodayWeatherCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iAr-VT-7yn">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘날씨 cell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GX-kv-swC">
-                                                    <rect key="frame" x="10" y="10" width="394" height="60"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JT2-ao-Hxj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="eXo-Io-1Yx">
+                                                        <size key="itemSize" width="82" height="125"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HourlyWeatherCell" id="dpA-73-KWn" customClass="HourlyWeatherCell" customModule="Weather" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="125"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="38m-yi-lbo">
+                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="125"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVc-Vv-Grj">
+                                                                        <rect key="frame" x="0.0" y="10" width="82" height="19"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="19" id="b1H-ql-hY3"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.min.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ipq-RX-urD">
+                                                                        <rect key="frame" x="23.5" y="45.5" width="35" height="34"/>
+                                                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="35" id="K3p-SS-A6m"/>
+                                                                            <constraint firstAttribute="width" constant="35" id="W5H-z9-zGC"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HO8-vj-7lr">
+                                                                        <rect key="frame" x="0.0" y="96" width="82" height="19"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="19" id="VSl-kv-DUl"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="HO8-vj-7lr" secondAttribute="bottom" constant="10" id="2aj-Zy-f30"/>
+                                                                    <constraint firstItem="ipq-RX-urD" firstAttribute="centerY" secondItem="38m-yi-lbo" secondAttribute="centerY" id="BNP-rx-pNV"/>
+                                                                    <constraint firstItem="HO8-vj-7lr" firstAttribute="leading" secondItem="38m-yi-lbo" secondAttribute="leading" id="I5z-fw-xSm"/>
+                                                                    <constraint firstItem="tVc-Vv-Grj" firstAttribute="leading" secondItem="38m-yi-lbo" secondAttribute="leading" id="Rca-9i-k1T"/>
+                                                                    <constraint firstItem="ipq-RX-urD" firstAttribute="centerX" secondItem="38m-yi-lbo" secondAttribute="centerX" id="b85-S3-5ud"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="tVc-Vv-Grj" secondAttribute="trailing" id="eG4-MU-OMq"/>
+                                                                    <constraint firstItem="ipq-RX-urD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tVc-Vv-Grj" secondAttribute="bottom" constant="5" id="f9c-k0-0dl"/>
+                                                                    <constraint firstItem="tVc-Vv-Grj" firstAttribute="top" secondItem="38m-yi-lbo" secondAttribute="top" constant="10" id="hTf-Gi-vCe"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="HO8-vj-7lr" secondAttribute="trailing" id="qt4-06-pMD"/>
+                                                                    <constraint firstItem="HO8-vj-7lr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ipq-RX-urD" secondAttribute="bottom" constant="5" id="rwJ-l9-jbg"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="82" height="125"/>
+                                                            <connections>
+                                                                <outlet property="tempLabel" destination="HO8-vj-7lr" id="1oZ-DN-DZX"/>
+                                                                <outlet property="timeLabel" destination="tVc-Vv-Grj" id="Owp-tV-MuZ"/>
+                                                                <outlet property="weatherImgView" destination="ipq-RX-urD" id="YzX-bs-kJL"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="nTb-hi-zLT" id="zkR-xD-Qaw"/>
+                                                        <outlet property="delegate" destination="nTb-hi-zLT" id="a1I-dq-Ycq"/>
+                                                    </connections>
+                                                </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="1GX-kv-swC" secondAttribute="trailing" constant="10" id="GTt-h4-4AA"/>
-                                                <constraint firstItem="1GX-kv-swC" firstAttribute="leading" secondItem="iAr-VT-7yn" secondAttribute="leading" constant="10" id="dv0-sv-oUm"/>
-                                                <constraint firstItem="1GX-kv-swC" firstAttribute="top" secondItem="iAr-VT-7yn" secondAttribute="top" constant="10" id="gew-MU-HCU"/>
-                                                <constraint firstAttribute="bottom" secondItem="1GX-kv-swC" secondAttribute="bottom" constant="10" id="lb6-rx-BnM"/>
+                                                <constraint firstItem="JT2-ao-Hxj" firstAttribute="top" secondItem="iAr-VT-7yn" secondAttribute="top" id="F2B-z1-PcZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="JT2-ao-Hxj" secondAttribute="bottom" id="Mks-r6-3cu"/>
+                                                <constraint firstAttribute="trailing" secondItem="JT2-ao-Hxj" secondAttribute="trailing" id="POP-pL-1nC"/>
+                                                <constraint firstItem="JT2-ao-Hxj" firstAttribute="leading" secondItem="iAr-VT-7yn" secondAttribute="leading" id="Q9A-ke-VIF"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.85098039219999999" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <size key="customSize" width="414" height="80"/>
+                                        <size key="customSize" width="414" height="125"/>
+                                        <connections>
+                                            <outlet property="collectionView" destination="JT2-ao-Hxj" id="oiX-be-6fX"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="WeeklyWeatherCell" id="03j-vH-8H4" customClass="WeeklyWeatherCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="90" width="414" height="194"/>
+                                        <rect key="frame" x="0.0" y="135" width="414" height="194"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uvZ-vr-1bZ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="194"/>
@@ -70,7 +137,7 @@
                                         <size key="customSize" width="414" height="194"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SummaryCell" id="1Dn-UR-geW" customClass="SummaryTodayWeatherCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="294" width="414" height="67"/>
+                                        <rect key="frame" x="0.0" y="339" width="414" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HqW-FX-ulc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
@@ -97,7 +164,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DetailCell" id="jkn-6i-7Df" customClass="DetailTodayWeatherCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="371" width="410" height="186"/>
+                                        <rect key="frame" x="2" y="416" width="410" height="186"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vUi-ad-5Jc">
                                             <rect key="frame" x="0.0" y="0.0" width="410" height="186"/>
@@ -430,4 +497,7 @@
             <point key="canvasLocation" x="-313.04347826086956" y="135.9375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sun.min.fill" catalog="system" width="64" height="60"/>
+    </resources>
 </document>
