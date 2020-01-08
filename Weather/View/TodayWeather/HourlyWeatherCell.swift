@@ -14,6 +14,8 @@ class HourlyWeatherCell: UICollectionViewCell {
     @IBOutlet weak var weatherImgView: UIImageView!
     @IBOutlet weak var tempLabel: UILabel!
     
+    var isNight = false
+    
     var forecast: Forecast? {
         didSet {
             if let data = forecast {
@@ -28,11 +30,16 @@ class HourlyWeatherCell: UICollectionViewCell {
                 if let dt = date {
                    let convertedDate = df.string(from: dt)
                     timeLabel.text = convertedDate
+                    if convertedDate.contains("PM") {
+                        isNight = true
+                    } else {
+                        isNight = false
+                    }
                 }
                 
-                let imgString = WeatherManager.getWeatherSysImgName(weather: data.weatherId, needFill: false)
+                let imgString = WeatherManager.getWeatherSysImgName(weather: data.weatherId, isNight: isNight)
                 weatherImgView.tintColor = UIColor.gray
-                weatherImgView.image = UIImage(named: imgString)
+                weatherImgView.image = UIImage(systemName: imgString)
                 
                 tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
             }
