@@ -90,13 +90,14 @@ extension WeatherManager {
         return convertedDate
     }
     
-    static func convertUnixDate(date: Int?) -> String {
+    static func convertUnixDate(date: Int?, timeZone: Int64) -> String {
         var convertedDate = ""
         
         if let unixDate = date {
             let date = Date(timeIntervalSince1970: TimeInterval(unixDate))
             let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = TimeZone.current
+            let timezone = TimeZone(secondsFromGMT: Int(timeZone))
+            dateFormatter.timeZone = timezone
             dateFormatter.locale = NSLocale.current
             dateFormatter.dateFormat = "yyyy.MM.dd"
             convertedDate = dateFormatter.string(from: date)
@@ -127,9 +128,9 @@ extension WeatherManager {
         return dow
     }
     
-    static func getTodayDate() -> String {
+    static func getTodayDate(dateFormat: String) -> String {
         let df = DateFormatter()
-        df.dateFormat = "yyyy.MM.dd"
+        df.dateFormat = dateFormat
         let currentDate = df.string(from: Date())
         return currentDate
     }

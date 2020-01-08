@@ -24,7 +24,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TodayWeatherCell" id="nTb-hi-zLT" customClass="TodayWeatherCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="iAr-VT-7yn">
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -43,7 +43,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="38m-yi-lbo">
                                                                 <rect key="frame" x="0.0" y="0.0" width="82" height="125"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVc-Vv-Grj">
                                                                         <rect key="frame" x="0.0" y="10" width="82" height="19"/>
@@ -99,14 +99,14 @@
                                                     </connections>
                                                 </collectionView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="JT2-ao-Hxj" firstAttribute="top" secondItem="iAr-VT-7yn" secondAttribute="top" id="F2B-z1-PcZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="JT2-ao-Hxj" secondAttribute="bottom" id="Mks-r6-3cu"/>
-                                                <constraint firstAttribute="trailing" secondItem="JT2-ao-Hxj" secondAttribute="trailing" id="POP-pL-1nC"/>
-                                                <constraint firstItem="JT2-ao-Hxj" firstAttribute="leading" secondItem="iAr-VT-7yn" secondAttribute="leading" id="Q9A-ke-VIF"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
+                                        </view>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.85098039219999999" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="JT2-ao-Hxj" firstAttribute="top" secondItem="nTb-hi-zLT" secondAttribute="top" id="F2B-z1-PcZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="JT2-ao-Hxj" secondAttribute="bottom" id="Mks-r6-3cu"/>
+                                            <constraint firstAttribute="trailing" secondItem="JT2-ao-Hxj" secondAttribute="trailing" id="POP-pL-1nC"/>
+                                            <constraint firstItem="JT2-ao-Hxj" firstAttribute="leading" secondItem="nTb-hi-zLT" secondAttribute="leading" id="Q9A-ke-VIF"/>
+                                        </constraints>
                                         <size key="customSize" width="414" height="125"/>
                                         <connections>
                                             <outlet property="collectionView" destination="JT2-ao-Hxj" id="oiX-be-6fX"/>

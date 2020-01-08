@@ -46,11 +46,6 @@ extension TodayWeatherCell: UICollectionViewDataSource {
 
 extension TodayWeatherCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let cnt = forecastArray?.count {
-            let width = Int(UIScreen.main.bounds.width)
-            return CGSize(width: width / cnt, height: Int(collectionView.bounds.height))
-        } else {
-            return CGSize(width: 0, height: 0)
-        }
+        return CGSize(width: 80, height: Int(collectionView.bounds.height))
     }
 }

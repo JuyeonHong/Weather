@@ -9,15 +9,17 @@
 import Foundation
 
 struct Forecast {
-    let date: Int // 날짜
+    let date: String // 날짜
+    let time: String // 시간
     let main: String // 날씨
     let weatherIconId: String // 날씨 아이콘 아이디
     let temp: Double // 현재 온도
     let temp_max: Double // 최고온도
     let temp_min: Double // 최저온도
     
-    init(date: Int, main: String, weatherIconId: String, temp: Double, temp_max: Double, temp_min: Double) {
+    init(date: String, time: String, main: String, weatherIconId: String, temp: Double, temp_max: Double, temp_min: Double) {
         self.date = date
+        self.time = time
         self.main = main
         self.weatherIconId = weatherIconId
         self.temp = temp
@@ -26,7 +28,10 @@ struct Forecast {
     }
     
     init?(dict: [String: Any]) {
-        self.date = dict["dt"] as? Int ?? 0
+        let date = dict["dt_txt"] as? String ?? ""
+        let dateComp = date.components(separatedBy: " ")
+        self.date = dateComp.first ?? ""
+        self.time = dateComp.last ?? ""
         let main = dict["main"] as? NSDictionary
         self.temp = main?["temp"] as? Double ?? 0
         self.temp_max = main?["temp_max"] as? Double ?? 0

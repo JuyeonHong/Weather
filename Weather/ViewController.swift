@@ -114,8 +114,8 @@ class ViewController: UIViewController {
         var todayarr: [Forecast] = []
         if let arr = forecastArray {
             for item in arr {
-                let date = WeatherManager.convertUnixDate(date: item.date)
-                let todayDate = WeatherManager.getTodayDate()
+                let date = item.date
+                let todayDate = WeatherManager.getTodayDate(dateFormat: "yyyy-MM-dd")
                 if date == todayDate {
                     todayarr.append(item)
                 }
