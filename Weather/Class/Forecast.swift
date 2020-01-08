@@ -12,16 +12,16 @@ struct Forecast {
     let date: String // 날짜
     let time: String // 시간
     let main: String // 날씨
-    let weatherIconId: String // 날씨 아이콘 아이디
+    let weatherId: Int // 날씨 상태 아이디
     let temp: Double // 현재 온도
     let temp_max: Double // 최고온도
     let temp_min: Double // 최저온도
     
-    init(date: String, time: String, main: String, weatherIconId: String, temp: Double, temp_max: Double, temp_min: Double) {
+    init(date: String, time: String, main: String, weatherId: Int, temp: Double, temp_max: Double, temp_min: Double) {
         self.date = date
         self.time = time
         self.main = main
-        self.weatherIconId = weatherIconId
+        self.weatherId = weatherId
         self.temp = temp
         self.temp_max = temp_max
         self.temp_min = temp_min
@@ -38,7 +38,7 @@ struct Forecast {
         self.temp_min = main?["temp_min"] as? Double ?? 0
         let weather = (dict["weather"] as? NSArray)?.firstObject as? NSDictionary
         self.main = weather?["main"] as? String ?? ""
-        self.weatherIconId = weather?["icon"] as? String ?? ""
+        self.weatherId = weather?["id"] as? Int ?? 0
     }
 }
 

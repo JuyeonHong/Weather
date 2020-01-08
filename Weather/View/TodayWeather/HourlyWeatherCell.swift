@@ -30,7 +30,9 @@ class HourlyWeatherCell: UICollectionViewCell {
                     timeLabel.text = convertedDate
                 }
                 
-                let iconId = data.weatherIconId
+                let imgString = WeatherManager.getWeatherSysImgName(weather: data.weatherId, needFill: false)
+                weatherImgView.tintColor = UIColor.gray
+                weatherImgView.image = UIImage(named: imgString)
                 
                 tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
             }

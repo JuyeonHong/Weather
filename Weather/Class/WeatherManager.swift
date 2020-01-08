@@ -143,4 +143,56 @@ extension WeatherManager {
         let output = input.converted(to: outputTempType)
         return mf.string(from: output)
     }
+    
+//// https://openweathermap.org/weather-conditions
+    static func getWeatherSysImgName(weather id: Int, needFill: Bool = false) -> String {
+        var imgString = ""
+        let index = (id.description.first)
+        
+        if index == "2" {
+            imgString = "cloud.bolt.rain"
+            if needFill {
+                imgString = "cloud.bolt.rain.fill"
+            }
+        }
+        else if index == "3" {
+            imgString = "cloud.drizzle"
+            if needFill {
+                imgString = "cloud.drizzle.fill"
+            }
+        }
+        else if index == "5" {
+            if id < 502 {
+                imgString = "cloud.rain"
+                if needFill {
+                    imgString = "cloud.rain.fill"
+                }
+            } else if id < 511 {
+                imgString = "cloud.heavyrain"
+                if needFill {
+                    imgString = "cloud.heavyrain.fill"
+                }
+            } else if id == 511 {
+                imgString = "snow"
+            } else  if id > 519 && id < 540 {
+                imgString = "cloud.hail"
+                if needFill {
+                    imgString = "cloud.hail.fill"
+                }
+            }
+        }
+        else if index == "6" {
+            if id >= 600 && id < 603 {
+                imgString = "snow"
+            } else if id > 603 && id < 625 {
+                imgString = "cloud.snow"
+                if needFill {
+                    imgString = "cloud.snow.fill"
+                }
+            }
+        }
+        
+        
+        return imgString
+    }
 }
