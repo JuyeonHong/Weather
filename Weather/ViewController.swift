@@ -110,6 +110,37 @@ class ViewController: UIViewController {
         }
     }
     
+    private func avg5DaysForecast() {
+        if let arr = forecastArray {
+            let days = arr.compactMap { $0.date }
+            let dayArray = days.removeDuplicates()
+            
+            for day in dayArray {
+                let result = arr.filter { $0.date == day }
+                
+                // tempMax 평균
+                let tempMaxArray = result.compactMap { $0.temp_max }
+                let sumTempMax = tempMaxArray.reduce(0) { accumulator, element in
+                    print("accumulator: \(accumulator) element: \(element)")
+                    return accumulator + Int(element)
+                }
+                let avgTempMax = sumTempMax / result.count
+                
+                // tempMin 평균
+                let tempMinArray = result.compactMap { $0.temp_min }
+                let sumTempMin = tempMinArray.reduce(0) { accumulator, element in
+                    return accumulator + Int(element)
+                }
+                let avgTempMin = sumTempMin / result.count
+                
+                // 날씨
+                let weatherArray = result.compactMap { $0.weatherId }
+                
+                
+            }
+        }
+    }
+    
     private func getTodayForecast() -> [Forecast] {
         var todayArr: [Forecast] = []
         if let arr = forecastArray {
@@ -173,6 +204,7 @@ extension ViewController: UICollectionViewDataSource {
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeeklyWeatherCell", for: indexPath) as! WeeklyWeatherCell
+            avg5DaysForecast()
             cell.forecastArray = forecastArray
             cell.collectionView.reloadData()
             return cell
