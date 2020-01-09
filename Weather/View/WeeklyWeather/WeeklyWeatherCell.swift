@@ -12,7 +12,7 @@ class WeeklyWeatherCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var forecastArray: [Forecast]?
+    var forecastArray: [WeeklyForecast]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +42,6 @@ extension WeeklyWeatherCell: UICollectionViewDataSource {
 
 extension WeeklyWeatherCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 45)
+        return CGSize(width: UIScreen.main.bounds.width, height: 40)
     }
 }

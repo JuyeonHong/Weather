@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     let weatherManager = WeatherManager()
     var weather: Weather? // 현재 날씨
     var forecastArray: [Forecast]? = nil
+    var weeklyForecastArray: [WeeklyForecast]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class ViewController: UIViewController {
         layout.itemSize = CGSize(width: width, height: 100)
         layout.headerSize = CGSize(width: width, height: 300)
         layout.cellTodayWeatherSize = CGSize(width: width, height: 125)
-        layout.cellWeeklyWeatherSize = CGSize(width: width, height: 330)
+        layout.cellWeeklyWeatherSize = CGSize(width: width, height: 240) // 330
         layout.cellSummaryWeatherSize = CGSize(width: width, height: 90)
         layout.cellDetailTodayWeatherSize = CGSize(width: width, height: 240)
     }
@@ -100,6 +101,7 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         print(data)
                         self.forecastArray = ForecastManager.loadForecastArray(dict: data)
+                        self.weeklyForecastArray = WeeklyForecastManager.loadWeelyForecastArray(dict: data)
                         
                         self.collectionView.reloadData()
                         self.indicatorView.stopAnimating()
@@ -110,7 +112,9 @@ class ViewController: UIViewController {
         }
     }
     
-    private func avg5DaysForecast() {
+    private func avg5DaysForecast() -> [WeeklyForecast] {
+        var totAvgArray: [WeeklyForecast] = []
+        
         if let arr = forecastArray {
             let days = arr.compactMap { $0.date }
             let dayArray = days.removeDuplicates()
@@ -120,25 +124,31 @@ class ViewController: UIViewController {
                 
                 // tempMax 평균
                 let tempMaxArray = result.compactMap { $0.temp_max }
-                let sumTempMax = tempMaxArray.reduce(0) { accumulator, element in
-                    print("accumulator: \(accumulator) element: \(element)")
-                    return accumulator + Int(element)
+                let sumTempMax = tempMaxArray.reduce(0) { acc, element in
+                    return acc + Int(element)
                 }
                 let avgTempMax = sumTempMax / result.count
                 
                 // tempMin 평균
                 let tempMinArray = result.compactMap { $0.temp_min }
-                let sumTempMin = tempMinArray.reduce(0) { accumulator, element in
-                    return accumulator + Int(element)
+                let sumTempMin = tempMinArray.reduce(0) { acc, element in
+                    return acc + Int(element)
                 }
                 let avgTempMin = sumTempMin / result.count
                 
                 // 날씨
                 let weatherArray = result.compactMap { $0.weatherId }
+                let weatherId = weatherArray[0]
                 
-                
+                let weeklyForecast = WeeklyForecast(date: day,
+                                                    weatherId: weatherId,
+                                                    temp_max: Double(avgTempMax),
+                                                    temp_min: Double(avgTempMin))
+                totAvgArray.append(weeklyForecast)
             }
         }
+        
+        return totAvgArray
     }
     
     private func getTodayForecast() -> [Forecast] {
@@ -204,8 +214,8 @@ extension ViewController: UICollectionViewDataSource {
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeeklyWeatherCell", for: indexPath) as! WeeklyWeatherCell
-            avg5DaysForecast()
-            cell.forecastArray = forecastArray
+            let array = avg5DaysForecast()
+            cell.forecastArray = array
             cell.collectionView.reloadData()
             return cell
             

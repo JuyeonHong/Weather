@@ -15,7 +15,7 @@ class WeekdayWeatherCell: UICollectionViewCell {
     @IBOutlet weak var tempMaxLabel: UILabel!
     @IBOutlet weak var tempMinLabel: UILabel!
     
-    var forecast: Forecast? {
+    var forecast: WeeklyForecast? {
         didSet {
             if let data = forecast {
                 let df = DateFormatter()

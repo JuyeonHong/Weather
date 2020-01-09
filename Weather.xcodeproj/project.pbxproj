@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132C5B2523C7792700EBB7C0 /* WeeklyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C5B2423C7792700EBB7C0 /* WeeklyForecast.swift */; };
 		1355300D23C4B03B00DEAD6D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1355300C23C4B03B00DEAD6D /* Direction.swift */; };
 		572E81A323C44AE7001F393C /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E81A223C44AE7001F393C /* Forecast.swift */; };
 		572E81A923C55F3C001F393C /* HourlyWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E81A823C55F3C001F393C /* HourlyWeatherCell.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		132C5B2423C7792700EBB7C0 /* WeeklyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecast.swift; sourceTree = "<group>"; };
 		1355300B23BE39D900DEAD6D /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 		1355300C23C4B03B00DEAD6D /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		572E81A223C44AE7001F393C /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				575A475123BD8BFF00F681E2 /* Weather.swift */,
 				572E81A223C44AE7001F393C /* Forecast.swift */,
 				1355300C23C4B03B00DEAD6D /* Direction.swift */,
+				132C5B2423C7792700EBB7C0 /* WeeklyForecast.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				57C661E423A9FFD800CD82C2 /* WeatherManager.swift in Sources */,
 				573E725023A0797E00912FB9 /* TodayWeatherCell.swift in Sources */,
 				573E725A23A07A3400912FB9 /* WeatherHeaderView.swift in Sources */,
+				132C5B2523C7792700EBB7C0 /* WeeklyForecast.swift in Sources */,
 				572E81AC23C6EFC7001F393C /* WeekdayWeatherCell.swift in Sources */,
 				572E81AF23C70061001F393C /* Array-Extension.swift in Sources */,
 				573E725623A07A0000912FB9 /* SummaryTodayWeatherCell.swift in Sources */,
