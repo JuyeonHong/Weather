@@ -106,12 +106,11 @@ extension WeatherManager {
         return convertedDate
     }
     
-    static func getTodayDayOfWeek() -> String {
+    static func getDayOfWeek(date: Date) -> String {
         var dow = ""
         
         let calender = Calendar(identifier: .gregorian)
-        let now = Date()
-        let comps = calender.dateComponents([.weekday], from: now)
+        let comps = calender.dateComponents([.weekday], from: date)
         let today = comps.weekday!
         
         switch today {
