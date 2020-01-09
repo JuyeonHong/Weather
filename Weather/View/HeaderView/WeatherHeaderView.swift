@@ -24,7 +24,7 @@ class WeatherHeaderView: UICollectionReusableView {
                 districtLabel.text = data.name
                 weatherLabel.text = data.description
                 tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
-                dayOfWeekLabel.text = WeatherManager.getTodayDayOfWeek()
+                dayOfWeekLabel.text = WeatherManager.getDayOfWeek(date: Date())
                 maxTempLabel.text = WeatherManager.convertTemp(temp: data.temp_max, from: .kelvin, to: .celsius)
                 minTempLabel.text = WeatherManager.convertTemp(temp: data.temp_min, from: .kelvin, to: .celsius)
             }

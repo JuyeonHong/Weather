@@ -173,6 +173,8 @@ extension ViewController: UICollectionViewDataSource {
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeeklyWeatherCell", for: indexPath) as! WeeklyWeatherCell
+            cell.forecastArray = forecastArray
+            cell.collectionView.reloadData()
             return cell
             
         case 2:
