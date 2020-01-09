@@ -111,18 +111,14 @@ class ViewController: UIViewController {
     }
     
     private func getTodayForecast() -> [Forecast] {
-        var todayarr: [Forecast] = []
+        var todayArr: [Forecast] = []
         if let arr = forecastArray {
-            for item in arr {
-                let date = item.date
-                let todayDate = WeatherManager.getTodayDate(dateFormat: "yyyy-MM-dd")
-                if date == todayDate {
-                    todayarr.append(item)
-                }
-            }
+            let todayDate = WeatherManager.getTodayDate(dateFormat: "yyyy-MM-dd")
+            todayArr = arr.filter { $0.date == todayDate }
         }
-        return todayarr
+        return todayArr
     }
+    
     // today ~ tomorrow
     private func get2DaysForecast() -> [Forecast] {
         var twoDaysArr: [Forecast] = []
