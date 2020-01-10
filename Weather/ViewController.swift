@@ -137,8 +137,21 @@ class ViewController: UIViewController {
                 let avgTempMin = sumTempMin / result.count
                 
                 // 날씨
+                var weatherIndex = 0
+                let timeArray = result.compactMap {
+                    (($0.time).components(separatedBy: ":")).first
+                }
+                let currentTime = (WeatherManager.getCurrentTime().components(separatedBy: ":")).first ?? ""
+                let timeSubArray = timeArray.compactMap { abs((Int($0) ?? 0) - (Int(currentTime) ?? 0)) }
+                for i in 0..<timeSubArray.count {
+                    let item = timeSubArray[i]
+                    if item == timeSubArray.min() {
+                        weatherIndex = i
+                    }
+                }
+                
                 let weatherArray = result.compactMap { $0.weatherId }
-                let weatherId = weatherArray[0]
+                let weatherId = weatherArray[weatherIndex]
                 
                 let weeklyForecast = WeeklyForecast(date: day,
                                                     weatherId: weatherId,
