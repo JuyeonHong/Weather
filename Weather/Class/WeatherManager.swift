@@ -134,6 +134,13 @@ extension WeatherManager {
         return currentDate
     }
     
+    static func getCurrentTime() -> String {
+        let df = DateFormatter()
+        df.dateFormat = "HH:mm:ss"
+        df.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        return df.string(from: Date())
+    }
+    
     static func convertTemp(temp: Double, from inputTempType: UnitTemperature, to outputTempType: UnitTemperature) -> String {
         let mf = MeasurementFormatter()
         mf.numberFormatter.maximumFractionDigits = 0
