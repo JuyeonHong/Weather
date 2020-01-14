@@ -36,7 +36,7 @@ class DetailTodayWeatherCell: UICollectionViewCell {
                 let direction = deg.direction.description
                 windLabel.text = String(format: "%@ %@", direction, speed)
                 
-                feelslikeLabel.text = WeatherManager.convertTemp(temp: data.feels_like, from: .kelvin, to: .celsius)
+                feelslikeLabel.text = WeatherManager.convertTemp(temp: data.feels_like, from: .kelvin, to: .celsius, tempStringUnit: .withDegree)
                 
                 let visibility = data.visibility
                 let intVal = Measurement(value: Double(data.visibility), unit: UnitLength.meters)

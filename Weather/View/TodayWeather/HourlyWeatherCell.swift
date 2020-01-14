@@ -40,7 +40,7 @@ class HourlyWeatherCell: UICollectionViewCell {
                 let imgString = WeatherManager.getWeatherSysImgName(weather: data.weatherId, isNight: isNight)
                 weatherImgView.image = UIImage(systemName: imgString)
                 
-                tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
+                tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius, tempStringUnit: .withDegree)
             }
         }
     }
