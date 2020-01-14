@@ -23,6 +23,7 @@ class WeatherHeaderView: UICollectionReusableView {
             if let data = weather {
                 districtLabel.text = data.name
                 weatherLabel.text = data.description
+                dayLabel.text = "TODAY"
                 tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
                 dayOfWeekLabel.text = WeatherManager.getDayOfWeek(date: Date())
                 maxTempLabel.text = WeatherManager.convertTemp(temp: data.temp_max, from: .kelvin, to: .celsius)

@@ -38,7 +38,6 @@ class HourlyWeatherCell: UICollectionViewCell {
                 }
                 
                 let imgString = WeatherManager.getWeatherSysImgName(weather: data.weatherId, isNight: isNight)
-                weatherImgView.tintColor = UIColor.gray
                 weatherImgView.image = UIImage(systemName: imgString)
                 
                 tempLabel.text = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)

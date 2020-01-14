@@ -30,6 +30,10 @@ class ViewController: UIViewController {
     var forecastArray: [Forecast]? = nil // 전체 날씨
     var weeklyForecastArray: [WeeklyForecast]? = nil // 주간 날씨
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,11 +58,11 @@ class ViewController: UIViewController {
         let width = UIScreen.main.bounds.width
         
         layout.itemSize = CGSize(width: width, height: 100)
-        layout.headerSize = CGSize(width: width, height: 300)
-        layout.cellTodayWeatherSize = CGSize(width: width, height: 125)
-        layout.cellWeeklyWeatherSize = CGSize(width: width, height: 240) // 330
-        layout.cellSummaryWeatherSize = CGSize(width: width, height: 90)
-        layout.cellDetailTodayWeatherSize = CGSize(width: width, height: 240)
+        layout.headerSize = CGSize(width: width, height: 270)
+        layout.cellTodayWeatherSize = CGSize(width: width, height: 100)
+        layout.cellWeeklyWeatherSize = CGSize(width: width, height: 210)
+        layout.cellSummaryWeatherSize = CGSize(width: width, height: 70)
+        layout.cellDetailTodayWeatherSize = CGSize(width: width, height: 235)
     }
     
     private func requestLocationAuthorization() {

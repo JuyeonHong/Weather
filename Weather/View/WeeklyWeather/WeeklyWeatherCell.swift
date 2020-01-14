@@ -42,6 +42,6 @@ extension WeeklyWeatherCell: UICollectionViewDataSource {
 
 extension WeeklyWeatherCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 40)
+        return CGSize(width: UIScreen.main.bounds.width, height: 35)
     }
 }

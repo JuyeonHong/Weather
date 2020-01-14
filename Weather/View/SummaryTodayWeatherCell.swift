@@ -15,7 +15,8 @@ class SummaryTodayWeatherCell: UICollectionViewCell {
             if let data = weather {
                 let temp = WeatherManager.convertTemp(temp: data.temp, from: .kelvin, to: .celsius)
                 let temp_max = WeatherManager.convertTemp(temp: data.temp_max, from: .kelvin, to: .celsius)
-                let str = String(format: "Today: %@ currently. It's %@; the high today was forecast as %@",data.description, temp, temp_max)
+                let temp_min = WeatherManager.convertTemp(temp: data.temp_min, from: .kelvin, to: .celsius)
+                let str = String(format: "Today: %@ currently. It's %@;\nThe high will be %@ and the low will be %@.",data.description, temp, temp_max, temp_min)
                 descriptionLabel.text = str
             }
         }
