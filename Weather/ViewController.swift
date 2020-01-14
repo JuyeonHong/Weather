@@ -118,19 +118,6 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    // method triggered when new location change
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print("did get latest location")
-//
-//        guard let latestLocation = locations.first else {return}
-//
-//        if currentCoordinate == nil {
-//            zoomToLatestLocation(with: latestLocation.coordinate)
-//        }
-//
-//        currentCoordinate = latestLocation.coordinate
-//    }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             getCurrentLocation()

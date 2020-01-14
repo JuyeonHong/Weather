@@ -84,8 +84,6 @@ extension WeatherLayout {
         contentHeight = 0
         oldBounds = collectionView.bounds
         
-        let itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
         let headerAttributes = WeatherLayoutAttributes(forSupplementaryViewOfKind: Element.WeatherHeaderView.kind, with: IndexPath(item: 0, section: 0))
         prepareElement(size: headerSize, type: .WeatherHeaderView, attributes: headerAttributes)
         
