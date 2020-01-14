@@ -29,6 +29,7 @@
 		573E726423A0E09500912FB9 /* WeatherLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */; };
 		575A475223BD8BFF00F681E2 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575A475123BD8BFF00F681E2 /* Weather.swift */; };
 		57C661E423A9FFD800CD82C2 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C661E323A9FFD800CD82C2 /* WeatherManager.swift */; };
+		57F8199E23CC3FAA00D7B6DE /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F8199D23CC3FAA00D7B6DE /* QueryService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		573E726323A0E09500912FB9 /* WeatherLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLayoutAttributes.swift; sourceTree = "<group>"; };
 		575A475123BD8BFF00F681E2 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		57C661E323A9FFD800CD82C2 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		57F8199D23CC3FAA00D7B6DE /* QueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 		57C661E223A9FFB600CD82C2 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				57F8199D23CC3FAA00D7B6DE /* QueryService.swift */,
 				57C661E323A9FFD800CD82C2 /* WeatherManager.swift */,
 				575A475123BD8BFF00F681E2 /* Weather.swift */,
 				572E81A223C44AE7001F393C /* Forecast.swift */,
@@ -271,6 +274,7 @@
 				572E81AF23C70061001F393C /* Array-Extension.swift in Sources */,
 				573E725623A07A0000912FB9 /* SummaryTodayWeatherCell.swift in Sources */,
 				573E726423A0E09500912FB9 /* WeatherLayoutAttributes.swift in Sources */,
+				57F8199E23CC3FAA00D7B6DE /* QueryService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

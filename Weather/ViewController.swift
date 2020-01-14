@@ -25,10 +25,10 @@ class ViewController: UIViewController {
     }()
     
     var locationManager: CLLocationManager?
-    let weatherManager = WeatherManager()
+    let queryService = QueryService()
     var weather: Weather? // 현재 날씨
-    var forecastArray: [Forecast]? = nil
-    var weeklyForecastArray: [WeeklyForecast]? = nil
+    var forecastArray: [Forecast]? = nil // 전체 날씨
+    var weeklyForecastArray: [WeeklyForecast]? = nil // 주간 날씨
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,6 @@ class ViewController: UIViewController {
         if authorizationStatus == .notDetermined {
             locationManager?.requestWhenInUseAuthorization()
         } else if authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways {
-            // 위치 허용상태
             print("위치 허용상태")
         } else {
             let message = "현재 날씨를 알기 위해 위치 정보에 접근할 수 있도록 허용되어 있어야 합니다."
@@ -90,16 +89,15 @@ class ViewController: UIViewController {
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.startUpdatingLocation()
         
-        // 현재 위치 위도, 경도 가져오기
-        let coor = locationManager?.location?.coordinate
+        let coor = locationManager?.location?.coordinate // 현재 위치 위도, 경도 가져오기
         if let latitude = coor?.latitude, let longitude = coor?.longitude {
-            weatherManager.getWeatherData(data: .weather, latitude: latitude, longitude: longitude) { data in
-                print(data)
+            queryService.getSearchResults(latitude: latitude, longitude: longitude, searchData: .weather) { data in
+                print("today weather data called \n \(data)")
                 self.weather = Weather(dict: data)
                 
-                self.weatherManager.getWeatherData(data: .forecast, latitude: latitude, longitude: longitude) { data in
+                self.queryService.getSearchResults(latitude: latitude, longitude: longitude, searchData: .forecast) { data in
                     DispatchQueue.main.async {
-                        print(data)
+                        print("total weather data called \n \(data)")
                         self.forecastArray = ForecastManager.loadForecastArray(dict: data)
                         self.weeklyForecastArray = WeeklyForecastManager.loadWeelyForecastArray(dict: data)
                         
@@ -110,79 +108,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func avg5DaysForecast() -> [WeeklyForecast] {
-        var totAvgArray: [WeeklyForecast] = []
-        
-        if let arr = forecastArray {
-            let days = arr.compactMap { $0.date }
-            let dayArray = days.removeDuplicates()
-            
-            for day in dayArray {
-                let result = arr.filter { $0.date == day }
-                
-                // tempMax 평균
-                let tempMaxArray = result.compactMap { $0.temp_max }
-                let sumTempMax = tempMaxArray.reduce(0) { acc, element in
-                    return acc + Int(element)
-                }
-                let avgTempMax = sumTempMax / result.count
-                
-                // tempMin 평균
-                let tempMinArray = result.compactMap { $0.temp_min }
-                let sumTempMin = tempMinArray.reduce(0) { acc, element in
-                    return acc + Int(element)
-                }
-                let avgTempMin = sumTempMin / result.count
-                
-                // 날씨
-                var weatherIndex = 0
-                let timeArray = result.compactMap {
-                    (($0.time).components(separatedBy: ":")).first
-                }
-                let currentTime = (WeatherManager.getCurrentTime().components(separatedBy: ":")).first ?? ""
-                let timeSubArray = timeArray.compactMap { abs((Int($0) ?? 0) - (Int(currentTime) ?? 0)) }
-                for i in 0..<timeSubArray.count {
-                    let item = timeSubArray[i]
-                    if item == timeSubArray.min() {
-                        weatherIndex = i
-                    }
-                }
-                
-                let weatherArray = result.compactMap { $0.weatherId }
-                let weatherId = weatherArray[weatherIndex]
-                
-                let weeklyForecast = WeeklyForecast(date: day,
-                                                    weatherId: weatherId,
-                                                    temp_max: Double(avgTempMax),
-                                                    temp_min: Double(avgTempMin))
-                totAvgArray.append(weeklyForecast)
-            }
-        }
-        
-        return totAvgArray
-    }
-    
-    private func getTodayForecast() -> [Forecast] {
-        var todayArr: [Forecast] = []
-        if let arr = forecastArray {
-            let todayDate = WeatherManager.getTodayDate(dateFormat: "yyyy-MM-dd")
-            todayArr = arr.filter { $0.date == todayDate }
-        }
-        return todayArr
-    }
-    
-    // today ~ tomorrow
-    private func get2DaysForecast() -> [Forecast] {
-        var twoDaysArr: [Forecast] = []
-        if let arr = forecastArray {
-            for i in 0..<12 {
-                let data = arr[i]
-                twoDaysArr.append(data)
-            }
-        }
-        return twoDaysArr
     }
 }
 
@@ -256,5 +181,80 @@ extension ViewController: UICollectionViewDataSource {
         default:
             fatalError("Unexpected Element Kind")
         }
+    }
+}
+
+extension ViewController {
+    private func avg5DaysForecast() -> [WeeklyForecast] {
+        var totAvgArray: [WeeklyForecast] = []
+        
+        if let arr = forecastArray {
+            let days = arr.compactMap { $0.date }
+            let dayArray = days.removeDuplicates()
+            
+            for day in dayArray {
+                let result = arr.filter { $0.date == day }
+                
+                // tempMax 평균
+                let tempMaxArray = result.compactMap { $0.temp_max }
+                let sumTempMax = tempMaxArray.reduce(0) { acc, element in
+                    return acc + Int(element)
+                }
+                let avgTempMax = sumTempMax / result.count
+                
+                // tempMin 평균
+                let tempMinArray = result.compactMap { $0.temp_min }
+                let sumTempMin = tempMinArray.reduce(0) { acc, element in
+                    return acc + Int(element)
+                }
+                let avgTempMin = sumTempMin / result.count
+                
+                // 날씨
+                var weatherIndex = 0
+                let timeArray = result.compactMap {
+                    (($0.time).components(separatedBy: ":")).first
+                }
+                let currentTime = (WeatherManager.getCurrentTime().components(separatedBy: ":")).first ?? ""
+                let timeSubArray = timeArray.compactMap { abs((Int($0) ?? 0) - (Int(currentTime) ?? 0)) }
+                for i in 0..<timeSubArray.count {
+                    let item = timeSubArray[i]
+                    if item == timeSubArray.min() {
+                        weatherIndex = i
+                    }
+                }
+                
+                let weatherArray = result.compactMap { $0.weatherId }
+                let weatherId = weatherArray[weatherIndex]
+                
+                let weeklyForecast = WeeklyForecast(date: day,
+                                                    weatherId: weatherId,
+                                                    temp_max: Double(avgTempMax),
+                                                    temp_min: Double(avgTempMin))
+                totAvgArray.append(weeklyForecast)
+            }
+        }
+        
+        return totAvgArray
+    }
+    
+    private func getTodayForecast() -> [Forecast] {
+        var todayArr: [Forecast] = []
+        if let arr = forecastArray {
+            let todayDate = WeatherManager.getTodayDate(dateFormat: "yyyy-MM-dd")
+            todayArr = arr.filter { $0.date == todayDate }
+        }
+        return todayArr
+    }
+    
+    // today ~ tomorrow
+    private func get2DaysForecast() -> [Forecast] {
+        var twoDaysArr: [Forecast] = []
+        if let arr = forecastArray {
+            for i in 0..<12 {
+                let data = arr[i]
+                twoDaysArr.append(data)
+            }
+        }
+        return twoDaysArr
     }
 }
