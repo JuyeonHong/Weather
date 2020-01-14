@@ -17,6 +17,8 @@ class ViewController: UIViewController {
         let indicator = UIActivityIndicatorView()
         indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         indicator.center = self.view.center
+        indicator.layer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        indicator.layer.backgroundColor = UIColor(named: "backgroundColor")?.cgColor
         
         indicator.hidesWhenStopped = false
         indicator.style = .large
