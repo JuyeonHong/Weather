@@ -3,7 +3,9 @@ iPhone Weather App using custom UICollectionViewFlowLayout and OpenWeather API
 
 ## Introduction
 Weather app brings today’s weather and weekly weather data for current location using **OpenWeather API**.  
-It will show the layout inspired by the **iPhone preinstalled Weather app**.
+It will show the layout inspired by the **iPhone preinstalled Weather app**.  
+
+<img src="/Examples/weather.gif" width="40%" height="30%"></img>
 
 ## How does it work
 ### 🌝 Data source 
