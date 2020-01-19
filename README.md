@@ -11,6 +11,8 @@ It will show the layout inspired by the **iPhone preinstalled Weather app**.
 ### 🌝 Data source 
 If you clone this project, You will need to sign up for **OpenWeather** and get a API key to use for free. Then, put your key in `Info.plist`.  
 
+<img src="/Examples/keyplist.png" width="70%" height="30%"></img>
+
 According to **OpenWeather**, free accounts can access **Current Weather** and **5 day / 3 hour forecast** data.  
 Therefore, use Current Weather to show the summarized current weather, and use the 5 day / 3 hour forecast to show today's weather and weekly weather. 
 
