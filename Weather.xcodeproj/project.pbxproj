@@ -178,8 +178,8 @@
 				57C661E323A9FFD800CD82C2 /* WeatherManager.swift */,
 				575A475123BD8BFF00F681E2 /* Weather.swift */,
 				572E81A223C44AE7001F393C /* Forecast.swift */,
-				1355300C23C4B03B00DEAD6D /* Direction.swift */,
 				132C5B2423C7792700EBB7C0 /* WeeklyForecast.swift */,
+				1355300C23C4B03B00DEAD6D /* Direction.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";

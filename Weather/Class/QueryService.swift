@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum DataType: String {
+    case weather
+    case forecast
+}
+
 class QueryService {
     private let baseURL = "https://api.openweathermap.org/data/2.5/"
     private let key = getWeatherAPIString()

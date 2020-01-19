@@ -8,11 +8,6 @@
 
 import Foundation
 
-enum DataType: String {
-    case weather
-    case forecast
-}
-
 enum UnitTemperatureType: String {
     case withDegree // ex. 4°
     case nonDegree // ex. 4
